@@ -1,6 +1,4 @@
 <script lang="ts">
-  import sound from "./assets/sound1.wav";
-  import sound2 from "./assets/sound2.wav";
   import {
     TopSection,
     Main,
@@ -19,44 +17,66 @@
     beatsSpecs,
     bpmSpecs,
   } from "./stores";
-  const click = new Audio(sound);
-  const click2 = new Audio(sound2);
 
-  let timer: NodeJS.Timer;
   let beatCount = 0;
   $: beatsNumber = $beats.length;
-
-  const playClick = () => {
-    $isPlaying = true;
-    if ($beats[beatCount]) {
-      click2.play();
-    } else {
-      click.play();
-    }
-    beatCount = (beatCount + 1) % beatsNumber;
-  };
-
-  const togglePlay = () => metronomeOn.set(!$metronomeOn);
-
-  const handleBeatsInput = (e: Event) => {
-    const { value } = e.target as HTMLInputElement;
-    if (parseInt(value) > $beats.length) {
-      beats.set([...$beats, false]);
-    }
-  };
-
-  $: interval = (60 * 1000) / $bpm;
+  $: step = noteDurationToMs($bpm, 1 / 4, 1) / 1000;
+  $: lookAhead = step / 2;
 
   $: {
     if ($metronomeOn) {
-      clearInterval(timer);
-      timer = setInterval(playClick, interval);
-    } else {
-      clearInterval(timer);
-      beatCount = 0;
-      $isPlaying = false;
+      clearInterval(to);
+      to = setInterval(timer, step / 4);
     }
   }
+
+  function noteDurationToMs(bpm, dur, type) {
+    return (60000 * 4 * dur * type) / bpm;
+  }
+
+  function scheduleNote(ac, time, dur) {
+    var oscillator = ac.createOscillator();
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(1000, ac.currentTime);
+
+    oscillator.connect(ac.destination);
+
+    oscillator.start(time);
+    isPlaying.set(true);
+    oscillator.stop(time + dur);
+
+    beatCount = (beatCount + 1) % beatsNumber;
+  }
+
+  const ac = new AudioContext();
+  let to,
+    lastNote = 0;
+
+  const timer = () => {
+    const diff = ac.currentTime - lastNote;
+    if (diff >= lookAhead) {
+      const nextNote = lastNote + step;
+      scheduleNote(ac, nextNote, 0.025);
+      lastNote = nextNote;
+    }
+  };
+
+  const start = () => {
+    beatCount = 0;
+    ac.resume();
+    metronomeOn.set(true);
+  };
+
+  const stop = () => {
+    metronomeOn.set(false);
+    isPlaying.set(false);
+    clearInterval(to);
+    beatCount = 0;
+  };
+
+  const toggle = () => {
+    $metronomeOn ? stop() : start();
+  };
 </script>
 
 <Main>
@@ -93,7 +113,6 @@
         type="range"
         min={$beatsSpecs.min}
         max={$beatsSpecs.max}
-        on:input={handleBeatsInput}
         bind:value={$beats.length}
       />
     </SideColumn>
@@ -102,7 +121,10 @@
   <BottomSection>
     <ButtonControls type={bpm} specs={bpmSpecs} value={$bpm} />
     <div class="grid place-items-center col-span-3">
-      <button class="btn btn-lg btn-accent self-center" on:click={togglePlay}>
+      <button
+        class="btn btn-lg btn-accent self-center"
+        on:click={() => toggle()}
+      >
         {$metronomeOn ? "Stop" : "Play"}</button
       >
     </div>
