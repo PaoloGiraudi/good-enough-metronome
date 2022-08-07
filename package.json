@@ -23,6 +23,7 @@
     "vite": "^3.0.0"
   },
   "dependencies": {
-    "daisyui": "^2.20.0"
+    "daisyui": "^2.20.0",
+    "tone": "^14.7.77"
   }
 }

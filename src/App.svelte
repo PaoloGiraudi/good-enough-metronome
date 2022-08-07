@@ -1,6 +1,5 @@
 <script lang="ts">
-  import sound from "./assets/sound1.wav";
-  import sound2 from "./assets/sound2.wav";
+  import * as Tone from "tone";
   import {
     TopSection,
     Main,
@@ -19,24 +18,12 @@
     beatsSpecs,
     bpmSpecs,
   } from "./stores";
-  const click = new Audio(sound);
-  const click2 = new Audio(sound2);
 
-  let timer: NodeJS.Timer;
+  const synth = new Tone.MembraneSynth().toDestination();
+
   let beatCount = 0;
   $: beatsNumber = $beats.length;
-
-  const playClick = () => {
-    $isPlaying = true;
-    if ($beats[beatCount]) {
-      click2.play();
-    } else {
-      click.play();
-    }
-    beatCount = (beatCount + 1) % beatsNumber;
-  };
-
-  const togglePlay = () => metronomeOn.set(!$metronomeOn);
+  $: Tone.Transport.bpm.value = $bpm;
 
   const handleBeatsInput = (e: Event) => {
     const { value } = e.target as HTMLInputElement;
@@ -45,17 +32,30 @@
     }
   };
 
-  $: interval = (60 * 1000) / $bpm;
+  async function startMetronome() {
+    await Tone.start();
+  }
 
-  $: {
-    if ($metronomeOn) {
-      clearInterval(timer);
-      timer = setInterval(playClick, interval);
+  const loop = new Tone.Loop((now) => playClick(now), "4n");
+
+  const playClick = (now: number) => {
+    $isPlaying = true;
+    if ($beats[beatCount]) {
+      synth.triggerAttackRelease("F1", "16n", now);
     } else {
-      clearInterval(timer);
-      beatCount = 0;
-      $isPlaying = false;
+      synth.triggerAttackRelease("C1", "16n", now);
     }
+    beatCount = (beatCount + 1) % beatsNumber;
+  };
+
+  $: if ($metronomeOn) {
+    startMetronome();
+    loop.start();
+    Tone.Transport.start();
+  } else {
+    loop.stop();
+    $isPlaying = false;
+    beatCount = 0;
   }
 </script>
 
@@ -65,7 +65,7 @@
       <BeatToggle
         {beat}
         handleClick={() => beats.toggle(i)}
-        highlighted={i === beatCount - 1 ||
+        highlighted={(i === beatCount - 1 && $isPlaying) ||
           (beatCount === 0 && i === beatsNumber - 1 && $isPlaying)}
       />
     {/each}
@@ -102,7 +102,10 @@
   <BottomSection>
     <ButtonControls type={bpm} specs={bpmSpecs} value={$bpm} />
     <div class="grid place-items-center col-span-3">
-      <button class="btn btn-lg btn-accent self-center" on:click={togglePlay}>
+      <button
+        class="btn btn-lg btn-accent self-center"
+        on:click={() => metronomeOn.set(!$metronomeOn)}
+      >
         {$metronomeOn ? "Stop" : "Play"}</button
       >
     </div>
