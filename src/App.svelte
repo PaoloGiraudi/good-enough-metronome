@@ -10,6 +10,7 @@
   } from "./components";
   import ButtonControls from "./components/button-controls.svelte";
   import CenterColumn from "./components/center-column.svelte";
+  import FooterLinks from "./components/footer-links.svelte";
   import {
     bpm,
     metronomeOn,
@@ -111,4 +112,5 @@
     </div>
     <ButtonControls type={beats} specs={beatsSpecs} value={beatsNumber} />
   </BottomSection>
+  <FooterLinks />
 </Main>
