@@ -54,6 +54,7 @@
     loop.start();
     Tone.Transport.start();
   } else {
+    Tone.Transport.stop();
     loop.stop();
     $isPlaying = false;
     beatCount = 0;
