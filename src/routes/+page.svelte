@@ -38,6 +38,7 @@
 	}, '4n');
 
 	$: if ($metronomeOn) {
+		Tone.start();
 		Tone.Transport.start();
 		$isPlaying = true;
 		loop.start();
