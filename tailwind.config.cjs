@@ -1,11 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{svelte,js,ts}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [require("daisyui")],
+  content: ["./src/app.html", './src/**/*.{svelte,js,ts}',],
+  plugins: [require('daisyui')],
   daisyui: {
     themes: ["corporate", "business"],
   },
-};
+}
+
