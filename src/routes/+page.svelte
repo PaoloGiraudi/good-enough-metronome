@@ -8,42 +8,43 @@
 	import RangeSlider from '$components/range-slider.svelte';
 	import PlayButton from '$components/play-button.svelte';
 
-	const synth = new Tone.MembraneSynth().toDestination();
+	const click = new Tone.Synth({
+		envelope: {
+			attack: 0.001,
+			decay: 0.1,
+			sustain: 0,
+			release: 0.1
+		}
+	}).toDestination();
+
 	let beatCount = 0;
 	$: beatsNumber = $beats.length;
 	$: Tone.Transport.bpm.value = $bpm;
 
-	const handleBeatsInput = (e: Event) => {
+	const changeBeats = (e: Event) => {
 		const { value } = e.target as HTMLInputElement;
 		if (parseInt(value) > $beats.length) {
 			beats.set([...$beats, false]);
 		}
 	};
 
-	async function startMetronome() {
-		await Tone.start();
-	}
-
-	const loop = new Tone.Loop((now) => playClick(now), '4n');
-
-	const playClick = (now: number) => {
-		$isPlaying = true;
+	const loop = new Tone.Loop((now) => {
 		if ($beats[beatCount]) {
-			synth.triggerAttackRelease('F1', '16n', now);
+			click.triggerAttackRelease('F6', '16n', now);
 		} else {
-			synth.triggerAttackRelease('C1', '16n', now);
+			click.triggerAttackRelease('C6', '16n', now);
 		}
 		beatCount = (beatCount + 1) % beatsNumber;
-	};
+	}, '4n');
 
 	$: if ($metronomeOn) {
-		startMetronome();
-		loop.start();
 		Tone.Transport.start();
+		$isPlaying = true;
+		loop.start();
 	} else {
 		Tone.Transport.stop();
-		loop.stop();
 		$isPlaying = false;
+		loop.stop();
 		beatCount = 0;
 	}
 </script>
@@ -68,7 +69,7 @@
 		</div>
 	</div>
 
-	<RangeSlider type="beats" on:input={handleBeatsInput} bind:value={$beats.length} />
+	<RangeSlider type="beats" on:input={changeBeats} bind:value={$beats.length} />
 </div>
 
 <div class="grid grid-cols-5">
