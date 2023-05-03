@@ -5,31 +5,30 @@
 
 	const controls = {
 		bpm: {
-			color: 'btn-primary',
+			color: 'btn-neutral',
 			specs: $bpmSpecs,
 			action: bpm
 		},
 		beats: {
-			color: 'btn-secondary',
+			color: 'btn-neutral',
 			specs: $beatsSpecs,
 			action: beats
 		}
 	};
 </script>
 
-<div class="flex flex-col gap-2">
-	<button
-		class={`btn ${controls[type].color}`}
-		disabled={value >= controls[type].specs.max}
-		on:click={controls[type].action.increment}
-	>
-		▲
-	</button>
-	<button
-		class={`btn ${controls[type].color}`}
-		disabled={value <= controls[type].specs.min}
-		on:click={controls[type].action.decrement}
-	>
-		▼
-	</button>
-</div>
+<button
+	class={`btn btn-ghost btn-square btn-md text-4xl ${controls[type].color}`}
+	disabled={value <= controls[type].specs.min}
+	on:click={controls[type].action.decrement}
+>
+	-
+</button>
+<slot />
+<button
+	class={`btn btn-ghost btn-square btn-md text-4xl ${controls[type].color}`}
+	disabled={value >= controls[type].specs.max}
+	on:click={controls[type].action.increment}
+>
+	+
+</button>
