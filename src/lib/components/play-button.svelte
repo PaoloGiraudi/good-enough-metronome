@@ -1,16 +1,22 @@
 <script>
 	import { metronomeOn } from '$stores/metronome';
-	import { svg_element } from 'svelte/internal';
+	import Pause from './svg/pause.svelte';
+	import Play from './svg/play.svelte';
 </script>
 
-<button class="h-20 w-20 grid place-items-center" on:click={() => metronomeOn.set(!$metronomeOn)}>
+<button class="ghost-button" on:click={() => metronomeOn.set(!$metronomeOn)}>
 	{#if $metronomeOn}
-		<svg width="60" height="60" viewBox="-1 0 8 8">
-			<path fill="currentColor" fill-rule="evenodd" d="M0 8h2V0H0v8Zm4 0h2V0H4v8Z" />
-		</svg>
+		<Pause />
 	{:else}
-		<svg width="60" height="60" viewBox="-0.5 0 8 8">
-			<path fill="currentColor" fill-rule="evenodd" d="M0 0v8l7-4z" />
-		</svg>
+		<Play />
 	{/if}
 </button>
+
+<style>
+	button {
+		display: grid;
+		place-items: center;
+		height: var(--size-10);
+		aspect-ratio: var(--ratio-square);
+	}
+</style>

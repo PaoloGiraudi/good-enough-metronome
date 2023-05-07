@@ -1,34 +1,58 @@
 <script lang="ts">
 	import { beats, beatsSpecs } from '$stores/beats';
 	import { bpm, bpmSpecs } from '$stores/bpm';
+	import Minus from './svg/minus.svelte';
+	import Plus from './svg/plus.svelte';
 	export let type: 'bpm' | 'beats', value: number;
 
 	const controls = {
 		bpm: {
-			color: 'btn-neutral',
 			specs: $bpmSpecs,
 			action: bpm
 		},
 		beats: {
-			color: 'btn-neutral',
 			specs: $beatsSpecs,
 			action: beats
 		}
 	};
 </script>
 
-<button
-	class={`btn btn-ghost btn-square btn-md text-4xl ${controls[type].color}`}
-	disabled={value <= controls[type].specs.min}
-	on:click={controls[type].action.decrement}
->
-	-
-</button>
-<slot />
-<button
-	class={`btn btn-ghost btn-square btn-md text-4xl ${controls[type].color}`}
-	disabled={value >= controls[type].specs.max}
-	on:click={controls[type].action.increment}
->
-	+
-</button>
+<div data-type={type}>
+	<button
+		class="ghost-button"
+		disabled={value <= controls[type].specs.min}
+		on:click={controls[type].action.decrement}
+	>
+		<Minus />
+	</button>
+	<slot />
+	<button
+		class="ghost-button"
+		disabled={value >= controls[type].specs.max}
+		on:click={controls[type].action.increment}
+	>
+		<Plus />
+	</button>
+</div>
+
+<style>
+	div {
+		font-weight: var(--font-weight-6);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-8);
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+	}
+
+	div[data-type='bpm'] {
+		font-size: 5rem;
+	}
+	button {
+		height: var(--size-8);
+		aspect-ratio: var(--ratio-square);
+		font-weight: var(--font-weight-6);
+		font-size: var(--font-size-4);
+	}
+</style>
