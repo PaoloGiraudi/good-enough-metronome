@@ -1,14 +1,11 @@
 <script>
-	import Moon from '$components/moon.svelte';
-	import Sun from '$components/sun.svelte';
-	import { theme } from '$stores/theme';
+	import 'open-props/style';
+	import 'open-props/normalize';
+	import 'open-props/colors-hsl';
 	import '../app.css';
-
-	const html = document.querySelector('html');
-
-	$: if (html) {
-		html.setAttribute('data-theme', $theme);
-	}
+	import Drawer from '$components/drawer.svelte';
+	import Info from '$components/info.svelte';
+	import ThemeSwitch from '$components/theme-switch.svelte';
 </script>
 
 <svelte:head>
@@ -17,19 +14,46 @@
 	<title>GEM: Good enough metronome</title>
 </svelte:head>
 
-<main
-	class="container mx-auto flex flex-col p-4 justify-between h-full sm:w-1/2 sm:max-w-lg sm:h-4/5 sm:shadow-2xl sm:shadow-neutral"
->
+<main>
 	<slot />
-	<button
-		class="btn btn-circle btn-neutral absolute bottom-4 right-4 sm:top-8 sm:right-8"
-		on:click={() => theme.set($theme === 'light' ? 'dark' : 'light')}
-	>
-		{#if $theme === 'dark'}
-			<Sun />
-		{/if}
-		{#if $theme === 'light'}
-			<Moon />
-		{/if}
-	</button>
+	<Drawer>
+		<ThemeSwitch />
+		<Info />
+	</Drawer>
 </main>
+<div data-display="desktop">
+	<ThemeSwitch />
+	<Info />
+</div>
+
+<style>
+	main {
+		width: 100%;
+		height: 100%;
+		max-inline-size: var(--size-md);
+		background-color: var(--surface-1);
+		display: flex;
+		flex-direction: column;
+		padding: var(--size-3);
+		position: relative;
+	}
+	:global(main > :not(:last-of-type)) {
+		border-bottom: var(--border-size-2) solid;
+		border-color: var(--surface-2);
+	}
+
+	div[data-display='desktop'] {
+		display: none;
+	}
+
+	@media (min-width: 640px) {
+		main {
+			max-inline-size: var(--size-15);
+			height: 80%;
+			box-shadow: var(--shadow-3);
+		}
+		div[data-display='desktop'] {
+			display: contents;
+		}
+	}
+</style>
