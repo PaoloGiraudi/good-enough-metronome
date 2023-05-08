@@ -1,6 +1,6 @@
 # GEM - Good Enough Metronome
 
-Simple metronome built with Svelte, Typescript and DaisyUI.
+Simple metronome built with Svelte, Typescript and Open Props.
 
 Precision could probably be improved but I would say it is _good enough_
 
