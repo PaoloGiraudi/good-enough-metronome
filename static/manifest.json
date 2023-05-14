@@ -9,6 +9,7 @@
 	"display": "standalone",
 	"orientation": "portrait",
 	"background_color": "#4c6ef5",
+	"theme_color": "#4c6ef5",
 	"dir": "ltr",
 	"lang": "en",
 	"icons": [

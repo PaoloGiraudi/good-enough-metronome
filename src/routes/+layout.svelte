@@ -8,12 +8,6 @@
 	import ThemeSwitch from '$components/theme-switch.svelte';
 </script>
 
-<svelte:head>
-	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffcfa" />
-	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0A0908" />
-	<title>GEM: Good enough metronome</title>
-</svelte:head>
-
 <main>
 	<slot />
 	<Drawer>
