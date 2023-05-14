@@ -11,8 +11,8 @@
 			tabindex="0"
 			aria-checked={beat}
 			class:checked={beat}
-			class:highlight={(i === beatCount - 1 && $isPlaying) ||
-				(beatCount === 0 && i === $beats.length - 1 && $isPlaying)}
+			class:highlight={$isPlaying &&
+				(i === beatCount - 1 || (beatCount === 0 && i === $beats.length - 1))}
 			on:click={() => beats.toggle(i)}
 			on:keydown={(e) => (e.code === 'Space' ? beats.toggle(i) : null)}
 		/>

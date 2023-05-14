@@ -3,9 +3,10 @@ import { writable } from 'svelte/store';
 
 export type Theme = 'light' | 'dark';
 
+const prefersDarkMode = browser && window.matchMedia('(prefers-color-scheme: dark)').matches;
 const userTheme = browser && localStorage.getItem('color-scheme');
 
-export const theme = writable(userTheme || 'dark');
+export const theme = writable(userTheme ? userTheme : prefersDarkMode ? 'dark' : 'light');
 
 export const setTheme = (value: Theme) => {
 	theme.set(value);
