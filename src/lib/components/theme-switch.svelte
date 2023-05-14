@@ -7,7 +7,7 @@
 </script>
 
 <p>Select theme</p>
-<button on:click={() => setTheme($theme === 'light' ? 'dark' : 'light')}>
+<button aria-label="Switch theme" on:click={() => setTheme($theme === 'light' ? 'dark' : 'light')}>
 	{#if $theme === 'dark'}
 		<Sun />
 	{/if}

@@ -7,6 +7,7 @@
 <div data-role="beats">
 	{#each $beats as beat, i}
 		<div
+			aria-label={`Beat ${i + 1}, toggle accent`}
 			role="checkbox"
 			tabindex="0"
 			aria-checked={beat}

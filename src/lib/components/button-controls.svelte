@@ -20,6 +20,7 @@
 <div data-type={type}>
 	<button
 		class="ghost-button"
+		aria-label={`Decrease ${type}`}
 		disabled={value <= controls[type].specs.min}
 		on:click={controls[type].action.decrement}
 	>
@@ -28,6 +29,7 @@
 	<slot />
 	<button
 		class="ghost-button"
+		aria-label={`Increase ${type}`}
 		disabled={value >= controls[type].specs.max}
 		on:click={controls[type].action.increment}
 	>
