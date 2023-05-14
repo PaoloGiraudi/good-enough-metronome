@@ -1,15 +1,18 @@
-# GEM - Good Enough Metronome
+<img alt="GEM logo" src="/static/icons/icon_512.png" style="width: 200px; height: 200px"/>
 
-Simple metronome built with Svelte, Typescript and Open Props.
+# GEM | Good Enough Metronome
 
-Precision could probably be improved but I would say it is _good enough_
+GEM is a simple, yet powerful, metronome PWA built with Sveltekit, Tone.js, and styled with Open Props. GEM does one thing, and it doest it well _enough_.
 
 ## Features
 
-- Adjustable beats number.
-- Set your own beat accents.
-- Mobile friendly.
+- PWA
+- Light and dark themes
+- Accessible
+- Adjustable tempo (30 BPM - 300 BPM)
+- Adjustable number of beats (2 - 9)
+- Customizable beat accents
 
-## Try it here
+## Try it out
 
-[GEM 🕰️](https://good-enough-metronome.vercel.app/)
+To use GEM, simply navigate to [Good Enough Metronome](https://goodmetronome.com).

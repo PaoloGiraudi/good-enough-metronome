@@ -3,7 +3,7 @@
 	"name": "GEM - Good Enough Metronome",
 	"short_name": "GEM",
 	"description": "A metronome which is good enough",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"start_url": "/",
 	"scope": "/",
 	"display": "standalone",
