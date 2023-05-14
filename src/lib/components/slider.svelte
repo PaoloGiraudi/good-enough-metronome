@@ -2,7 +2,14 @@
 	import { bpmSpecs, bpm } from '$stores/bpm';
 </script>
 
-<input type="range" min={$bpmSpecs.min} max={$bpmSpecs.max} on:input bind:value={$bpm} />
+<input
+	type="range"
+	aria-label="Modify metronome speed"
+	min={$bpmSpecs.min}
+	max={$bpmSpecs.max}
+	on:input
+	bind:value={$bpm}
+/>
 
 <style>
 	input[type='range'] {

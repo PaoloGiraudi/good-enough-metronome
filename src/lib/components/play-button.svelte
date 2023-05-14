@@ -4,7 +4,11 @@
 	import Play from './svg/play.svelte';
 </script>
 
-<button class="ghost-button" on:click={() => metronomeOn.set(!$metronomeOn)}>
+<button
+	class="ghost-button"
+	aria-label={$metronomeOn ? 'Stop metronome' : 'Start metronome'}
+	on:click={() => metronomeOn.set(!$metronomeOn)}
+>
 	{#if $metronomeOn}
 		<Pause />
 	{:else}
