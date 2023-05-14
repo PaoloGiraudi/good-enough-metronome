@@ -28,18 +28,18 @@
 		} else {
 			click.triggerAttackRelease('C6', '16n', now);
 		}
+		$isPlaying = true;
 		beatCount = (beatCount + 1) % beatsNumber;
 	}, '4n');
 
 	$: if ($metronomeOn) {
 		Tone.start();
 		Tone.Transport.start();
-		$isPlaying = true;
 		loop.start();
 	} else {
 		Tone.Transport.stop();
-		$isPlaying = false;
 		loop.stop();
+		$isPlaying = false;
 		beatCount = 0;
 	}
 </script>
