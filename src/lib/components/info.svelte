@@ -4,7 +4,10 @@
 
 <div>
 	<p>Built by <a href="http://www.paologiraudi.com" target="__blank">Paolo Giraudi</a></p>
-	<p>Source code on <a href="http://www.github.com/PaoloGiraudi" target="__blank">Github</a></p>
+	<p>
+		Source code on
+		<a href="http://www.github.com/PaoloGiraudi/good-enough-metronome" target="__blank">Github</a>
+	</p>
 	<p>Current version: {version}</p>
 </div>
 
