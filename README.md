@@ -7,6 +7,7 @@ GEM is a simple, yet powerful, metronome PWA built with Sveltekit, Tone.js, and 
 ## Features
 
 - PWA
+- Works offline
 - Light and dark themes
 - Accessible
 - Adjustable tempo (30 BPM - 300 BPM)
