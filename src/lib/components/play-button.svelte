@@ -18,9 +18,6 @@
 
 <style>
 	button {
-		display: grid;
-		place-items: center;
 		height: var(--size-10);
-		aspect-ratio: var(--ratio-square);
 	}
 </style>

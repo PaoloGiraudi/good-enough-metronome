@@ -25,10 +25,7 @@
 		top: var(--size-3);
 		right: var(--size-3);
 		background-color: var(--surface-2);
-		display: grid;
-		place-items: center;
 		height: var(--size-8);
-		aspect-ratio: var(--ratio-square);
 	}
 
 	@media (min-width: 640px) {

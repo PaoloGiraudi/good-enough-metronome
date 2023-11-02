@@ -16,13 +16,15 @@
 </button>
 {#if $drawer}
 	<div
+		role="presentation"
 		data-role="backdrop"
-		on:keypress
 		in:fade={{ duration: 150 }}
 		out:fade={{ duration: 250 }}
+		on:keypress
 		on:click={() => drawer.set(false)}
 	>
 		<div
+			role="presentation"
 			data-role="dialog"
 			in:fly={{ y: 500, duration: 150 }}
 			out:fly={{ y: 500, duration: 250 }}
@@ -36,10 +38,7 @@
 
 <style>
 	button {
-		display: grid;
-		place-items: center;
 		height: var(--size-8);
-		aspect-ratio: var(--ratio-square);
 		position: absolute;
 		background: var(--surface-2);
 		bottom: var(--size-3);

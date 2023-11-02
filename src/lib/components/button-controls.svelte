@@ -19,7 +19,6 @@
 
 <div data-type={type}>
 	<button
-		class="ghost-button"
 		aria-label={`Decrease ${type}`}
 		disabled={value <= controls[type].specs.min}
 		on:click={controls[type].action.decrement}
@@ -53,8 +52,5 @@
 	}
 	button {
 		height: var(--size-8);
-		aspect-ratio: var(--ratio-square);
-		font-weight: var(--font-weight-6);
-		font-size: var(--font-size-4);
 	}
 </style>
