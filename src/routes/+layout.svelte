@@ -6,6 +6,10 @@
 	import Drawer from '$components/drawer.svelte';
 	import Info from '$components/info.svelte';
 	import ThemeSwitch from '$components/theme-switch.svelte';
+	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
+
+	inject({ mode: dev ? 'development' : 'production' });
 </script>
 
 <main>
