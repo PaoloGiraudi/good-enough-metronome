@@ -3,7 +3,7 @@ html {
 	--brand-dark: var(--indigo-6);
 	--text-1-dark: var(--gray-1);
 	--surface-1-dark: var(--gray-12);
-	--surface-2-dark: var(--gray-8); 
+	--surface-2-dark: var(--gray-8);
 	--surface-shadow-dark: var(--gray-8-hsl);
 	--shadow-strength-dark: 80%;
 	--link-dark: var(--indigo-3);
@@ -56,7 +56,7 @@ html {
 	--text-2: var(--text-2-dark);
 	--surface-1: var(--surface-1-dark);
 	--surface-2: var(--surface-2-dark);
-	--link-visited: var(--link-visited-dark);  
+	--link-visited: var(--link-visited-dark);
 	--surface-shadow: var(--surface-shadow-dark);
 	--shadow-strength: var(--shadow-strength-dark);
 	--link: var(--link-dark);
@@ -76,11 +76,12 @@ html {
 	--link: var(--link-light);
 }
 
-body, html {
-    height: 100%;
+body,
+html {
+	height: 100%;
 	width: 100%;
-    display: grid;
-    place-items: center;
+	display: grid;
+	place-items: center;
 }
 
 html {
@@ -92,14 +93,3 @@ html {
 hr {
 	margin-block: var(--size-fluid-1);
 }
-
-.ghost-button {
-	background-color: var(--surface-1);
-	color: var(--text-1);
-}
-
-.ghost-button:disabled {
-	opacity: .3;
-}
-
-

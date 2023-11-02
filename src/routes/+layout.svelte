@@ -40,6 +40,19 @@
 		display: none;
 	}
 
+	:global(button) {
+		padding: 0;
+		display: grid;
+		place-items: center;
+		background-color: var(--surface-1);
+		color: var(--text-1);
+		aspect-ratio: var(--ratio-square);
+	}
+
+	:global(button:disabled) {
+		opacity: 0.3;
+	}
+
 	@media (min-width: 640px) {
 		main {
 			max-inline-size: var(--size-15);
