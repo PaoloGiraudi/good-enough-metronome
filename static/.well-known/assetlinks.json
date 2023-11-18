@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.goodmetronome.www.twa",
+        "sha256_cert_fingerprints": ["43:5D:D2:49:BC:04:A6:E9:51:E1:35:D6:D4:D8:0D:F2:CC:DD:DC:03:25:7E:49:22:C2:39:79:F6:0C:E1:CE:D0"]
+      }
+    }]
