@@ -3,68 +3,89 @@
 	import 'open-props/normalize';
 	import 'open-props/colors-hsl';
 	import '../app.css';
-	import Drawer from '$components/drawer.svelte';
 	import Info from '$components/info.svelte';
 	import ThemeSwitch from '$components/theme-switch.svelte';
-	import { dev } from '$app/environment';
-	import { inject } from '@vercel/analytics';
-
-	inject({ mode: dev ? 'development' : 'production' });
 </script>
 
 <main>
-	<slot />
-	<Drawer>
-		<ThemeSwitch />
-		<Info />
-	</Drawer>
+	<div class="scroll-container">
+		<section class="metronome">
+			<slot />
+		</section>
+		<section class="sidebar" data-mobile>
+			<ThemeSwitch />
+			<Info />
+		</section>
+	</div>
 </main>
-<div data-display="desktop">
+<div data-desktop>
 	<ThemeSwitch />
 	<Info />
 </div>
 
 <style>
-	main {
-		width: 100%;
-		height: 100%;
-		max-inline-size: var(--size-md);
-		background-color: var(--surface-1);
-		display: flex;
-		flex-direction: column;
-		padding: var(--size-3);
-		position: relative;
-	}
-	:global(main > :not(:last-of-type)) {
-		border-bottom: var(--border-size-2) solid;
-		border-color: var(--surface-2);
-	}
-
-	div[data-display='desktop'] {
+	[data-desktop] {
 		display: none;
 	}
+	[data-mobile] {
+		display: block;
+	}
 
-	:global(button) {
-		padding: 0;
-		display: grid;
-		place-items: center;
+	main {
+		direction: rtl;
+		height: 100vh;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+	}
+
+	.scroll-container {
+		direction: rtl;
+		display: flex;
+		height: 100vh;
+		width: 180vw;
+	}
+
+	.metronome {
+		display: flex;
+		direction: ltr;
+		width: 100vw;
+		max-inline-size: var(--size-md);
 		background-color: var(--surface-1);
-		color: var(--text-1);
-		aspect-ratio: var(--ratio-square);
+		flex-direction: column;
+		padding: var(--size-3);
+		scroll-snap-align: start;
 	}
 
-	:global(button:disabled) {
-		opacity: 0.3;
+	.sidebar {
+		padding: var(--size-3);
+		direction: ltr;
+		width: 80vw;
+		scroll-snap-align: start;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
-	@media (min-width: 640px) {
+	@media (min-width: 50rem) {
+		[data-desktop] {
+			display: block;
+		}
+		[data-mobile] {
+			display: none;
+		}
+
 		main {
+			display: grid;
+			place-items: center;
+		}
+		.scroll-container {
+			display: contents;
+		}
+
+		.metronome {
 			max-inline-size: var(--size-15);
 			height: 80%;
 			box-shadow: var(--shadow-3);
-		}
-		div[data-display='desktop'] {
-			display: contents;
 		}
 	}
 </style>

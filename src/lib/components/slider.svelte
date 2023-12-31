@@ -13,6 +13,7 @@
 
 <style>
 	input[type='range'] {
+		touch-action: none;
 		background: var(--surface-1);
 		width: 100%;
 		height: var(--size-7);
@@ -38,7 +39,9 @@
 		border-radius: 0;
 		height: var(--size-7);
 		background: var(--surface-2);
-		box-shadow: inset 0 10px var(--surface-1), inset 0 -10px var(--surface-1);
+		box-shadow:
+			inset 0 10px var(--surface-1),
+			inset 0 -10px var(--surface-1);
 	}
 
 	/*mozilla*/
