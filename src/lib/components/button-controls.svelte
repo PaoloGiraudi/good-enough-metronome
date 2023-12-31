@@ -39,7 +39,6 @@
 <style>
 	div {
 		font-weight: var(--font-weight-6);
-		font-family: var(--font-sans);
 		font-size: var(--font-size-8);
 		display: flex;
 		justify-content: space-between;

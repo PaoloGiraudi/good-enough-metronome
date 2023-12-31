@@ -78,10 +78,8 @@ html {
 
 body,
 html {
-	height: 100%;
-	width: 100%;
-	display: grid;
-	place-items: center;
+	height: 100vh;
+	font-family: var(--font-sans);
 }
 
 html {
@@ -90,6 +88,21 @@ html {
 	background-color: var(--surface-2);
 }
 
-hr {
-	margin-block: var(--size-fluid-1);
+button {
+	padding: 0;
+	display: grid;
+	place-items: center;
+	background-color: var(--surface-1);
+	color: var(--text-1);
+	aspect-ratio: var(--ratio-square);
+
+	&:disabled {
+		opacity: 0.3;
+	}
+}
+
+/* section dividers */
+.metronome > :not(:last-of-type) {
+	border-bottom: var(--border-size-2) solid;
+	border-color: var(--surface-2);
 }
