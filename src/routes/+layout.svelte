@@ -33,7 +33,7 @@
 
 	main {
 		direction: rtl;
-		height: 100vh;
+		height: 100svh;
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;
 	}
@@ -41,7 +41,7 @@
 	.scroll-container {
 		direction: rtl;
 		display: flex;
-		height: 100vh;
+		height: 100svh;
 		width: 180vw;
 	}
 
