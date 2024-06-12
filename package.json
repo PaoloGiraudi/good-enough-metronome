@@ -2,7 +2,7 @@
 	"name": "good-enough-metronome",
 	"version": "0.1.9",
 	"private": true,
-	"packageManager": "yarn@4.3.0",
+	"packageManager": "pnpm@9.3.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
