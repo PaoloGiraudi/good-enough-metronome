@@ -1,22 +1,27 @@
 <script lang="ts">
-	import { beats } from '$stores/beats';
-	import { isPlaying } from '$stores/metronome';
-	export let beatCount: number;
+	import { beats } from '$stores/beats.svelte';
+	import { metronome } from '$stores/metronome.svelte';
+
+	interface Props {
+		beatCount: number;
+	}
+
+	let { beatCount }: Props = $props();
 </script>
 
 <div data-role="beats">
-	{#each $beats as beat, i}
+	{#each beats.values as beat, i (i)}
 		<div
 			aria-label={`Beat ${i + 1}, toggle accent`}
 			role="checkbox"
 			tabindex="0"
 			aria-checked={beat}
 			class:checked={beat}
-			class:highlight={$isPlaying &&
-				(i === beatCount - 1 || (beatCount === 0 && i === $beats.length - 1))}
-			on:click={() => beats.toggle(i)}
-			on:keydown={(e) => (e.code === 'Space' ? beats.toggle(i) : null)}
-		/>
+			class:highlight={metronome.playing &&
+				(i === beatCount - 1 || (beatCount === 0 && i === beats.values.length - 1))}
+			onclick={() => beats.toggle(i)}
+			onkeydown={(e) => (e.code === 'Space' ? beats.toggle(i) : null)}
+		></div>
 	{/each}
 </div>
 

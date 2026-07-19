@@ -1,36 +1,30 @@
 <script lang="ts">
-	import { beats, beatsSpecs } from '$stores/beats';
-	import { bpm, bpmSpecs } from '$stores/bpm';
 	import Minus from './svg/minus.svelte';
 	import Plus from './svg/plus.svelte';
-	export let type: 'bpm' | 'beats', value: number;
 
-	const controls = {
-		bpm: {
-			specs: $bpmSpecs,
-			action: bpm
-		},
-		beats: {
-			specs: $beatsSpecs,
-			action: beats
-		}
-	};
+	interface Props {
+		type: 'bpm' | 'beats';
+		value: number;
+		min: number;
+		max: number;
+		decrement: () => void;
+		increment: () => void;
+		children: import('svelte').Snippet;
+	}
+
+	let { type, value, min, max, decrement, increment, children }: Props = $props();
 </script>
 
 <div data-type={type}>
-	<button
-		aria-label={`Decrease ${type}`}
-		disabled={value <= controls[type].specs.min}
-		on:click={controls[type].action.decrement}
-	>
+	<button aria-label={`Decrease ${type}`} disabled={value <= min} onclick={decrement}>
 		<Minus />
 	</button>
-	<slot />
+	{@render children()}
 	<button
 		class="ghost-button"
 		aria-label={`Increase ${type}`}
-		disabled={value >= controls[type].specs.max}
-		on:click={controls[type].action.increment}
+		disabled={value >= max}
+		onclick={increment}
 	>
 		<Plus />
 	</button>

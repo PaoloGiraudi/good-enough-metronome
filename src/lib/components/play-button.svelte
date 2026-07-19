@@ -1,15 +1,15 @@
 <script>
-	import { metronomeOn } from '$stores/metronome';
+	import { metronome } from '$stores/metronome.svelte';
 	import Pause from './svg/pause.svelte';
 	import Play from './svg/play.svelte';
 </script>
 
 <button
 	class="ghost-button"
-	aria-label={$metronomeOn ? 'Stop metronome' : 'Start metronome'}
-	on:click={() => metronomeOn.set(!$metronomeOn)}
+	aria-label={metronome.on ? 'Stop metronome' : 'Start metronome'}
+	onclick={() => (metronome.on = !metronome.on)}
 >
-	{#if $metronomeOn}
+	{#if metronome.on}
 		<Pause />
 	{:else}
 		<Play />
