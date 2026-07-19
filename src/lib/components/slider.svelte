@@ -1,14 +1,20 @@
 <script lang="ts">
-	import { bpmSpecs, bpm } from '$stores/bpm';
+	import { bpm, bpmSpecs } from '$stores/bpm.svelte';
+
+	interface Props {
+		oninput?: (event: Event) => void;
+	}
+
+	let { oninput }: Props = $props();
 </script>
 
 <input
 	type="range"
 	aria-label="Modify metronome speed"
-	min={$bpmSpecs.min}
-	max={$bpmSpecs.max}
-	on:input
-	bind:value={$bpm}
+	min={bpmSpecs.min}
+	max={bpmSpecs.max}
+	bind:value={bpm.speed}
+	{oninput}
 />
 
 <style>

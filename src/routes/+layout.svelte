@@ -5,12 +5,14 @@
 	import '../app.css';
 	import Info from '$components/info.svelte';
 	import ThemeSwitch from '$components/theme-switch.svelte';
+
+	let { children } = $props();
 </script>
 
 <main>
 	<div class="scroll-container">
 		<section class="metronome">
-			<slot />
+			{@render children()}
 		</section>
 		<section class="sidebar" data-mobile>
 			<ThemeSwitch />

@@ -1,21 +1,22 @@
 <script>
-	import { setTheme, theme } from '$stores/theme';
+	import { theme } from '$stores/theme.svelte';
 	import { onMount } from 'svelte';
 	import Sun from './svg/sun.svelte';
 	import Moon from './svg/moon.svelte';
-	onMount(() => document.documentElement.setAttribute('color-scheme', $theme));
+
+	onMount(() => document.documentElement.setAttribute('color-scheme', theme.value));
 </script>
 
 <div>
 	<p>Select theme</p>
 	<button
 		aria-label="Switch theme"
-		on:click={() => setTheme($theme === 'light' ? 'dark' : 'light')}
+		onclick={() => theme.set(theme.value === 'light' ? 'dark' : 'light')}
 	>
-		{#if $theme === 'dark'}
+		{#if theme.value === 'dark'}
 			<Sun />
 		{/if}
-		{#if $theme === 'light'}
+		{#if theme.value === 'light'}
 			<Moon />
 		{/if}
 	</button>
