@@ -1,27 +1,18 @@
 <script lang="ts">
 	import { beats } from '$stores/beats.svelte';
 	import { metronome } from '$stores/metronome.svelte';
-
-	interface Props {
-		beatCount: number;
-	}
-
-	let { beatCount }: Props = $props();
 </script>
 
 <div data-role="beats">
 	{#each beats.values as beat, i (i)}
-		<div
+		<button
+			type="button"
 			aria-label={`Beat ${i + 1}, toggle accent`}
-			role="checkbox"
-			tabindex="0"
-			aria-checked={beat}
+			aria-pressed={beat}
 			class:checked={beat}
-			class:highlight={metronome.playing &&
-				(i === beatCount - 1 || (beatCount === 0 && i === beats.values.length - 1))}
+			class:highlight={metronome.playing && i === metronome.currentBeat}
 			onclick={() => beats.toggle(i)}
-			onkeydown={(e) => (e.code === 'Space' ? beats.toggle(i) : null)}
-		></div>
+		></button>
 	{/each}
 </div>
 
@@ -35,15 +26,19 @@
 		height: var(--size-10);
 	}
 
-	div[role='checkbox'] {
+	button {
+		width: 100%;
+		height: 100%;
+		aspect-ratio: auto;
 		border: var(--border-size-2) solid;
 		border-color: var(--brand);
+		background-color: var(--surface-1);
 	}
 
-	.checked {
+	button.checked {
 		background-color: var(--brand);
 	}
-	.highlight {
+	button.highlight {
 		background-color: var(--orange-4);
 	}
 </style>

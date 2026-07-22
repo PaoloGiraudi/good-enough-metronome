@@ -16,4 +16,4 @@ GEM is a simple, yet powerful, metronome PWA built with Sveltekit, Tone.js, and 
 
 ## Try it out
 
-You can download Gem ifrom the [Play store](https://play.google.com/store/apps/details?id=com.goodmetronome.www.twa) or simply navigate to [Good Enough Metronome](https://goodmetronome.com).
+You can download GEM as a PWA from [Good Enough Metronome](https://goodmetronome.com).

@@ -1,11 +1,5 @@
 <script lang="ts">
 	import { bpm, bpmSpecs } from '$stores/bpm.svelte';
-
-	interface Props {
-		oninput?: (event: Event) => void;
-	}
-
-	let { oninput }: Props = $props();
 </script>
 
 <input
@@ -14,7 +8,6 @@
 	min={bpmSpecs.min}
 	max={bpmSpecs.max}
 	bind:value={bpm.speed}
-	{oninput}
 />
 
 <style>

@@ -4,26 +4,19 @@
 
 <div>
 	<p>
-		Download GEM from the
-		<a
-			href="https://play.google.com/store/apps/details?id=com.goodmetronome.www.twa"
-			target="__blank"
-		>
-			Play Store
-		</a>
-	</p>
-	<hr />
-	<p>
-		Found a bug? Send me an
-		<a href="mailto:me@paologiraudi.com">email</a>
-	</p>
-	<hr />
-	<p>
 		Source code on
-		<a href="http://www.github.com/PaoloGiraudi/good-enough-metronome" target="__blank">Github</a>
+		<a
+			href="https://www.github.com/PaoloGiraudi/good-enough-metronome"
+			target="_blank"
+			rel="noopener noreferrer">Github</a
+		>
 	</p>
 	<hr />
-	<p>Built by <a href="http://www.paologiraudi.com" target="__blank">Paolo Giraudi</a></p>
+	<p>
+		Built by <a href="https://www.paologiraudi.com" target="_blank" rel="noopener noreferrer"
+			>Paolo Giraudi</a
+		>
+	</p>
 	<hr />
 	<p>Current version: {version}</p>
 </div>

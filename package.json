@@ -1,8 +1,8 @@
 {
 	"name": "good-enough-metronome",
-	"version": "0.1.9",
+	"version": "0.1.11",
 	"private": true,
-	"packageManager": "pnpm@9.3.0",
+	"packageManager": "pnpm@11.15.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -14,7 +14,6 @@
 		"deploy": "wrangler deploy"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^5.20260714.1",
 		"@eslint/js": "^10.0.0",
 		"@sveltejs/adapter-cloudflare": "^7.0.1",
 		"@sveltejs/kit": "^2.70.1",
@@ -23,6 +22,7 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.21.0",
 		"globals": "^17.7.0",
+		"svelte-eslint-parser": "^1.8.0",
 		"typescript-eslint": "^8.64.0",
 		"open-props": "^1.7.23",
 		"prettier": "^3.9.5",

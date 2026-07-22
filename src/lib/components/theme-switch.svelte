@@ -1,10 +1,7 @@
 <script>
 	import { theme } from '$stores/theme.svelte';
-	import { onMount } from 'svelte';
 	import Sun from './svg/sun.svelte';
 	import Moon from './svg/moon.svelte';
-
-	onMount(() => document.documentElement.setAttribute('color-scheme', theme.value));
 </script>
 
 <div>
@@ -42,6 +39,9 @@
 		}
 		p {
 			display: none;
+		}
+		div {
+			display: contents;
 		}
 	}
 </style>
