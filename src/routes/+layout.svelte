@@ -14,25 +14,14 @@
 		<section class="metronome">
 			{@render children()}
 		</section>
-		<section class="sidebar" data-mobile>
+		<section class="sidebar">
 			<ThemeSwitch />
 			<Info />
 		</section>
 	</div>
 </main>
-<div data-desktop>
-	<ThemeSwitch />
-	<Info />
-</div>
 
 <style>
-	[data-desktop] {
-		display: none;
-	}
-	[data-mobile] {
-		display: block;
-	}
-
 	main {
 		direction: rtl;
 		height: 100svh;
@@ -69,13 +58,6 @@
 	}
 
 	@media (min-width: 50rem) {
-		[data-desktop] {
-			display: block;
-		}
-		[data-mobile] {
-			display: none;
-		}
-
 		main {
 			display: grid;
 			place-items: center;
@@ -88,6 +70,10 @@
 			max-inline-size: var(--size-15);
 			height: 80%;
 			box-shadow: var(--shadow-3);
+		}
+
+		.sidebar {
+			display: contents;
 		}
 	}
 </style>

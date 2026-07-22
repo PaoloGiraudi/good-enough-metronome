@@ -20,9 +20,18 @@
 
 		<base href="/" />
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffcfa" />
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0A0908" />
+		<script>
+			(function () {
+				var theme = localStorage.getItem('color-scheme');
+				if (theme !== 'light' && theme !== 'dark') {
+					theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				}
+				document.documentElement.setAttribute('color-scheme', theme);
+			})();
+		</script>
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		%sveltekit.head%

@@ -18,6 +18,7 @@ sw.addEventListener('install', (event) => {
 	}
 
 	event.waitUntil(addFilesToCache());
+	sw.skipWaiting();
 });
 
 sw.addEventListener('activate', (event) => {
