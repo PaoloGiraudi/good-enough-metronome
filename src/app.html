@@ -1,28 +1,61 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>GEM | Good enough metronome</title>
-		<meta name="title" content="Good Enough Metronome - A Simple Online Metronome" />
+		<meta charset="utf-8" />
+		<base href="/" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>GEM | Good Enough Metronome</title>
 		<meta
 			name="description"
 			content="GEM (Good Enough Metronome) is a free PWA designed for musicians who need a reliable and easy-to-use metronome. GEM does one thing, and it does it well enough."
 		/>
-		<meta
-			name="keywords"
-			content="GEM, Good Enough Metronome, PWA, online metronome, tempo, time signature, volume, music practice, musicians, beginners, professionals."
-		/>
-		<meta property="og:title" content="Good Enough Metronome - A Simple Online Metronome" />
+		<link rel="canonical" href="https://goodmetronome.com/" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Good Enough Metronome" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:title" content="GEM | Good Enough Metronome" />
 		<meta
 			property="og:description"
 			content="GEM (Good Enough Metronome) is a free PWA designed for musicians who need a reliable and easy-to-use metronome. GEM does one thing, and it does it well enough."
 		/>
-		<meta property="og:image" content="%sveltekit.assets%/icons/icon_512.png" />
+		<meta property="og:url" content="https://goodmetronome.com/" />
+		<meta property="og:image" content="https://goodmetronome.com/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Good Enough Metronome - a simple online metronome" />
 
-		<base href="/" />
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="GEM | Good Enough Metronome" />
+		<meta
+			name="twitter:description"
+			content="GEM (Good Enough Metronome) is a free PWA designed for musicians who need a reliable and easy-to-use metronome. GEM does one thing, and it does it well enough."
+		/>
+		<meta name="twitter:image" content="https://goodmetronome.com/og-image.png" />
+
 		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffcfa" />
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0A0908" />
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"name": "Good Enough Metronome",
+				"alternateName": "GEM",
+				"url": "https://goodmetronome.com/",
+				"applicationCategory": "UtilitiesApplication",
+				"operatingSystem": "Web",
+				"description": "GEM (Good Enough Metronome) is a free PWA designed for musicians who need a reliable and easy-to-use metronome. GEM does one thing, and it does it well enough.",
+				"image": "https://goodmetronome.com/icons/icon_512.png",
+				"offers": {
+					"@type": "Offer",
+					"price": "0",
+					"priceCurrency": "USD"
+				}
+			}
+		</script>
+
 		<script>
 			(function () {
 				var theme = localStorage.getItem('color-scheme');
@@ -32,7 +65,9 @@
 				document.documentElement.setAttribute('color-scheme', theme);
 			})();
 		</script>
+
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/icons/icon_192.png" />
 		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		%sveltekit.head%
 	</head>
