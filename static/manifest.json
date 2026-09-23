@@ -12,6 +12,23 @@
 	"theme_color": "#4c6ef5",
 	"dir": "ltr",
 	"lang": "en",
+	"categories": ["music", "utilities"],
+	"screenshots": [
+		{
+			"src": "/screenshots/wide.png",
+			"sizes": "1920x1080",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Good Enough Metronome on desktop"
+		},
+		{
+			"src": "/screenshots/narrow.png",
+			"sizes": "1080x1920",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Good Enough Metronome on mobile"
+		}
+	],
 	"icons": [
 		{
 			"src": "/icons/icon_48.png",

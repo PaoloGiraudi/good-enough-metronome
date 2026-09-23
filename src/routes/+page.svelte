@@ -10,6 +10,8 @@
 	let beatsNumber = $derived(beats.values.length);
 </script>
 
+<h1 class="visually-hidden">Good Enough Metronome - a free online metronome</h1>
+
 <Section>
 	<BeatsToggle />
 </Section>
@@ -43,3 +45,17 @@
 <Section>
 	<PlayButton />
 </Section>
+
+<style>
+	.visually-hidden {
+		position: absolute;
+		clip-path: inset(50%);
+		overflow: hidden;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		border: 0;
+		white-space: nowrap;
+	}
+</style>
