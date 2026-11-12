@@ -1,5 +1,5 @@
-import { defaultSettings, soundLabels, soundTypes, type SoundType } from '$lib/settings';
-import { readSetting, writeSetting } from '$lib/storage';
+import { defaultSettings, soundLabels, soundTypes, type SoundType } from '#lib/settings.ts';
+import { readSetting, writeSetting } from '#lib/storage.ts';
 
 export { soundLabels, soundTypes };
 export type { SoundType };

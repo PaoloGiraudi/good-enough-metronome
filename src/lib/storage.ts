@@ -1,5 +1,6 @@
-import { browser } from '$app/environment';
-import { normalizeSetting, settingKeys, type SettingKey, type Settings } from '$lib/settings';
+import { browser } from '$app/env';
+
+import { normalizeSetting, settingKeys, type SettingKey, type Settings } from '#lib/settings.ts';
 
 const maxAge = 60 * 60 * 24 * 365;
 

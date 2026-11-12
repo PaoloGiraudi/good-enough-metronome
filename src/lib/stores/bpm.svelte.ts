@@ -1,7 +1,7 @@
-import { clampBpm, defaultSettings } from '$lib/settings';
-import { readSetting, writeSetting } from '$lib/storage';
+import { clampBpm, defaultSettings } from '#lib/settings.ts';
+import { readSetting, writeSetting } from '#lib/storage.ts';
 
-export { bpmSpecs } from '$lib/settings';
+export { bpmSpecs } from '#lib/settings.ts';
 
 const resetAfterMs = 3000;
 const persistAfterMs = 150;

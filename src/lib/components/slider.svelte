@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { bpm, bpmSpecs } from '$stores/bpm.svelte';
+	import { bpm, bpmSpecs } from '#stores/bpm.svelte.ts';
 </script>
 
 <input

@@ -1,5 +1,5 @@
-import { defaultSettings, modeLabels, modes, type Mode } from '$lib/settings';
-import { readSetting, writeSetting } from '$lib/storage';
+import { defaultSettings, modeLabels, modes, type Mode } from '#lib/settings.ts';
+import { readSetting, writeSetting } from '#lib/storage.ts';
 
 export { modeLabels, modes };
 export type { Mode };

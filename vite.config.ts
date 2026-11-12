@@ -1,6 +1,15 @@
+import adapter from '@sveltejs/adapter-cloudflare';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+
 // vp migrate: merged .oxlintrc.json (134a10c9a2c6f2baf071181dab372534).
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig, lazyPlugins } from 'vite-plus';
+
+const file = fileURLToPath(new URL('package.json', import.meta.url));
+const json = readFileSync(file, 'utf8');
+const pkg = JSON.parse(json);
 
 export default defineConfig({
 	staged: {
@@ -235,8 +244,12 @@ export default defineConfig({
 			'yarn.lock'
 		]
 	},
-	test: {
-		passWithNoTests: true
-	},
-	plugins: lazyPlugins(() => [sveltekit()])
+	test: { passWithNoTests: true },
+	plugins: lazyPlugins(() => [
+		sveltekit({
+			preprocess: vitePreprocess(),
+			adapter: adapter({ routes: { include: ['/*'], exclude: ['<all>'] } }),
+			version: { name: pkg.version }
+		})
+	])
 });

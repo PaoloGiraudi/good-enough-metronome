@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { sound, soundLabels } from '$stores/sound.svelte';
+	import { sound, soundLabels } from '#stores/sound.svelte.ts';
 	import Beep from './svg/sound-beep.svelte';
 	import Click from './svg/sound-click.svelte';
 	import Wood from './svg/sound-wood.svelte';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { mode, modeLabels } from '$stores/mode.svelte';
+	import { mode, modeLabels } from '#stores/mode.svelte.ts';
 	import Bolt from './svg/bolt.svelte';
 	import Speaker from './svg/speaker.svelte';
 	import SpeakerOff from './svg/speaker-off.svelte';

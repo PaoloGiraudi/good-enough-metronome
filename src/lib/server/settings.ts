@@ -5,7 +5,7 @@ import {
 	settingKeys,
 	type SettingKey,
 	type Settings
-} from '$lib/settings';
+} from '#lib/settings.ts';
 
 export function readSettings(cookies: Cookies): Settings {
 	return {

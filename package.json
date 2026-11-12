@@ -15,21 +15,27 @@
 		"prepare": "vp config"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-cloudflare": "^7.2.10",
-		"@sveltejs/kit": "^2.70.4",
+		"@sveltejs/adapter-cloudflare": "^8.0.2",
+		"@sveltejs/kit": "^3.2.0",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"@types/node": "^26.6.6",
 		"eslint-plugin-svelte": "^3.24.1",
-		"globals": "^17.14.0",
 		"open-props": "^1.7.23",
 		"svelte": "^5.57.3",
 		"svelte-check": "^4.7.8",
 		"svelte-eslint-parser": "^1.10.1",
 		"tone": "^15.1.22",
 		"tslib": "^2.9.1",
-		"typescript": "^5.9.3",
+		"typescript": "^6.0.0",
 		"vite": "catalog:",
-		"wrangler": "^4.160.0",
-		"vite-plus": "catalog:"
+		"vite-plus": "catalog:",
+		"wrangler": "^4.160.0"
 	},
-	"type": "module"
+	"type": "module",
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*",
+		"#components/*": "./src/lib/components/*",
+		"#stores/*": "./src/lib/stores/*"
+	}
 }

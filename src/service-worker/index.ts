@@ -1,27 +1,30 @@
-/// <reference types="@sveltejs/kit" />
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 
-const sw = self as unknown as ServiceWorkerGlobalScope;
-
-import { build, files, version } from '$service-worker';
+import { self } from '$app/service-worker';
+import { version } from '$app/env';
+import { assets, immutable } from '$app/manifest';
 
 const CACHE = `cache-${version}`;
 
-const ASSETS = [...build, ...files];
+// `immutable`/`assets` paths are relative to the base path, so resolve them
+// against the service worker scope to get pathnames that match `url.pathname`
+const SCOPE = self.registration.scope;
 
-sw.addEventListener('install', (event) => {
+const ASSETS = [...immutable, ...assets].map(({ path }) => new URL(path, SCOPE).pathname);
+
+self.addEventListener('install', (event) => {
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE);
 		await cache.addAll(ASSETS);
 	}
 
 	event.waitUntil(addFilesToCache());
-	void sw.skipWaiting();
+	void self.skipWaiting();
 });
 
-sw.addEventListener('activate', (event) => {
+self.addEventListener('activate', (event) => {
 	async function deleteOldCaches() {
 		for (const key of await caches.keys()) {
 			if (key !== CACHE) await caches.delete(key);
@@ -31,7 +34,7 @@ sw.addEventListener('activate', (event) => {
 	event.waitUntil(deleteOldCaches());
 });
 
-sw.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
 	if (event.request.method !== 'GET') return;
 
 	async function respond() {
@@ -39,7 +42,11 @@ sw.addEventListener('fetch', (event) => {
 		const cache = await caches.open(CACHE);
 
 		if (ASSETS.includes(url.pathname)) {
-			return cache.match(event.request);
+			const cached = await cache.match(event.request);
+
+			if (cached) {
+				return cached;
+			}
 		}
 
 		try {
@@ -50,10 +57,16 @@ sw.addEventListener('fetch', (event) => {
 			}
 
 			return response;
-		} catch {
-			return cache.match(event.request);
+		} catch (error) {
+			const response = await cache.match(event.request);
+
+			if (response) {
+				return response;
+			}
+
+			throw error;
 		}
 	}
 
-	event.respondWith(respond() as Response | PromiseLike<Response>);
+	event.respondWith(respond());
 });

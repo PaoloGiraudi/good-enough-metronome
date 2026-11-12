@@ -1,5 +1,5 @@
 <script>
-	import { metronome } from '$stores/metronome.svelte';
+	import { metronome } from '#stores/metronome.svelte.ts';
 	import Pause from './svg/pause.svelte';
 	import Play from './svg/play.svelte';
 </script>

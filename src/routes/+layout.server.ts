@@ -1,4 +1,4 @@
-import { readSettings } from '$lib/server/settings';
+import { readSettings } from '#lib/server/settings.ts';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ cookies, setHeaders }) => {
