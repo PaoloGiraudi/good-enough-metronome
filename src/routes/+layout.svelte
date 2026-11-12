@@ -82,14 +82,15 @@
 		background-color: color-mix(in srgb, var(--brand) 30%, var(--surface-1));
 	}
 
+	/* the flash must land exactly on the beat, so it turns on with no transition */
+	.metronome[data-flash='1'],
+	.metronome[data-flash='2'] {
+		transition: none;
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.metronome {
 			transition: none;
-		}
-
-		.metronome[data-flash='1'],
-		.metronome[data-flash='2'] {
-			background-color: var(--surface-1);
 		}
 	}
 
