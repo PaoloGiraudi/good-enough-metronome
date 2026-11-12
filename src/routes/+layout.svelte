@@ -3,26 +3,35 @@
 	import 'open-props/normalize';
 	import 'open-props/colors-hsl';
 	import '../app.css';
-	import Info from '$components/info.svelte';
+	import PendulumSwitch from '$components/pendulum-switch.svelte';
+	import Shortcuts from '$components/shortcuts.svelte';
+	import SoundSwitch from '$components/sound-switch.svelte';
 	import ThemeSwitch from '$components/theme-switch.svelte';
+	import { metronome } from '$stores/metronome.svelte';
 
 	let { children } = $props();
 </script>
 
 <main>
 	<div class="scroll-container">
-		<section class="metronome">
+		<section class="metronome" data-flash={metronome.flashLevel}>
 			{@render children()}
 		</section>
 		<section class="sidebar">
-			<ThemeSwitch />
-			<Info />
+			<div class="settings">
+				<ThemeSwitch />
+				<SoundSwitch />
+				<PendulumSwitch />
+			</div>
+			<Shortcuts />
 		</section>
 	</div>
 </main>
 
 <style>
 	main {
+		--sidebar-width: 80vw;
+
 		direction: rtl;
 		height: 100svh;
 		overflow-x: auto;
@@ -33,7 +42,7 @@
 		direction: rtl;
 		display: flex;
 		height: 100svh;
-		width: 180vw;
+		width: calc(100vw + var(--sidebar-width));
 	}
 
 	.metronome {
@@ -43,18 +52,46 @@
 		max-inline-size: var(--size-md);
 		background-color: var(--surface-1);
 		flex-direction: column;
-		padding: var(--size-3);
+		padding: var(--size-4);
+		padding-bottom: 0;
 		scroll-snap-align: start;
+		transition: background-color 70ms ease-out;
+	}
+
+	.metronome[data-flash='1'] {
+		background-color: color-mix(in srgb, var(--brand) 14%, var(--surface-1));
+	}
+
+	.metronome[data-flash='2'] {
+		background-color: color-mix(in srgb, var(--brand) 30%, var(--surface-1));
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.metronome {
+			transition: none;
+		}
+
+		.metronome[data-flash='1'],
+		.metronome[data-flash='2'] {
+			background-color: var(--surface-1);
+		}
 	}
 
 	.sidebar {
 		padding: var(--size-3);
 		direction: ltr;
-		width: 80vw;
+		width: var(--sidebar-width);
 		scroll-snap-align: start;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+	}
+
+	.settings {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-4);
+		width: 100%;
 	}
 
 	@media (min-width: 50rem) {
@@ -67,12 +104,21 @@
 		}
 
 		.metronome {
-			max-inline-size: var(--size-15);
-			height: 80%;
+			height: min(95vh, calc(var(--size-15) * 16 / 9));
+			width: auto;
+			aspect-ratio: 9 / 16;
+			max-inline-size: 95vw;
+			overflow-y: auto;
+			padding: var(--size-5);
+			padding-bottom: 0;
 			box-shadow: var(--shadow-3);
 		}
 
 		.sidebar {
+			display: contents;
+		}
+
+		.settings {
 			display: contents;
 		}
 	}

@@ -20,4 +20,10 @@
 	button {
 		height: var(--size-10);
 	}
+
+	@media (max-height: 44rem) {
+		button {
+			height: var(--size-9);
+		}
+	}
 </style>
