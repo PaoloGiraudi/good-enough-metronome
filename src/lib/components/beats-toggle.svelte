@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { beats, beatsSpecs } from '$stores/beats.svelte';
-	import { metronome } from '$stores/metronome.svelte';
+	import { beats, beatsSpecs } from '#stores/beats.svelte.ts';
+	import { metronome } from '#stores/metronome.svelte.ts';
 	import Minus from './svg/minus.svelte';
 	import Plus from './svg/plus.svelte';
 </script>

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import BeatsToggle from '$components/beats-toggle.svelte';
-	import ButtonControls from '$components/button-controls.svelte';
-	import ModeSwitch from '$components/mode-switch.svelte';
-	import Pendulum from '$components/pendulum.svelte';
-	import PlayButton from '$components/play-button.svelte';
-	import Slider from '$components/slider.svelte';
-	import { bpm, bpmSpecs } from '$stores/bpm.svelte';
-	import { metronome } from '$stores/metronome.svelte';
-	import { pendulum } from '$stores/pendulum.svelte';
+	import BeatsToggle from '#components/beats-toggle.svelte';
+	import ButtonControls from '#components/button-controls.svelte';
+	import ModeSwitch from '#components/mode-switch.svelte';
+	import Pendulum from '#components/pendulum.svelte';
+	import PlayButton from '#components/play-button.svelte';
+	import Slider from '#components/slider.svelte';
+	import { bpm, bpmSpecs } from '#stores/bpm.svelte.ts';
+	import { metronome } from '#stores/metronome.svelte.ts';
+	import { pendulum } from '#stores/pendulum.svelte.ts';
 
 	function handleKeydown(event: KeyboardEvent) {
 		const target = event.target as HTMLElement | null;

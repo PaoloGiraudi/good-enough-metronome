@@ -1,5 +1,5 @@
-import { defaultSettings } from '$lib/settings';
-import { readSetting, writeSetting } from '$lib/storage';
+import { defaultSettings } from '#lib/settings.ts';
+import { readSetting, writeSetting } from '#lib/storage.ts';
 
 class PendulumSetting {
 	visible = $state(defaultSettings.pendulum);

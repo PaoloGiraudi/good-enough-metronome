@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pendulum } from '$stores/pendulum.svelte';
+	import { pendulum } from '#stores/pendulum.svelte.ts';
 	import PendulumIcon from './svg/pendulum.svelte';
 	import PendulumOff from './svg/pendulum-off.svelte';
 

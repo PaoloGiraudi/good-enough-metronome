@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { theme } from '$stores/theme.svelte';
+	import { theme } from '#stores/theme.svelte.ts';
 	import Sun from './svg/sun.svelte';
 	import Moon from './svg/moon.svelte';
 

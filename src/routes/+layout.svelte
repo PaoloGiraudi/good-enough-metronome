@@ -3,16 +3,16 @@
 	import 'open-props/normalize';
 	import 'open-props/colors-hsl';
 	import '../app.css';
-	import PendulumSwitch from '$components/pendulum-switch.svelte';
-	import Shortcuts from '$components/shortcuts.svelte';
-	import SoundSwitch from '$components/sound-switch.svelte';
-	import ThemeSwitch from '$components/theme-switch.svelte';
-	import { beats } from '$stores/beats.svelte';
-	import { bpm } from '$stores/bpm.svelte';
-	import { metronome } from '$stores/metronome.svelte';
-	import { mode } from '$stores/mode.svelte';
-	import { pendulum } from '$stores/pendulum.svelte';
-	import { sound } from '$stores/sound.svelte';
+	import PendulumSwitch from '#components/pendulum-switch.svelte';
+	import Shortcuts from '#components/shortcuts.svelte';
+	import SoundSwitch from '#components/sound-switch.svelte';
+	import ThemeSwitch from '#components/theme-switch.svelte';
+	import { beats } from '#stores/beats.svelte.ts';
+	import { bpm } from '#stores/bpm.svelte.ts';
+	import { metronome } from '#stores/metronome.svelte.ts';
+	import { mode } from '#stores/mode.svelte.ts';
+	import { pendulum } from '#stores/pendulum.svelte.ts';
+	import { sound } from '#stores/sound.svelte.ts';
 	import type { Snippet } from 'svelte';
 	import { untrack } from 'svelte';
 	import type { LayoutData } from './$types';
@@ -82,14 +82,15 @@
 		background-color: color-mix(in srgb, var(--brand) 30%, var(--surface-1));
 	}
 
+	/* the flash must land exactly on the beat, so it turns on with no transition */
+	.metronome[data-flash='1'],
+	.metronome[data-flash='2'] {
+		transition: none;
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.metronome {
 			transition: none;
-		}
-
-		.metronome[data-flash='1'],
-		.metronome[data-flash='2'] {
-			background-color: var(--surface-1);
 		}
 	}
 

@@ -1,4 +1,4 @@
-import { browser } from '$app/environment';
+import { browser } from '$app/env';
 
 let sentinel: WakeLockSentinel | null = null;
 let wanted = false;

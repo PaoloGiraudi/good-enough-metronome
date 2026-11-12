@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { bpm } from '$stores/bpm.svelte';
-	import { metronome } from '$stores/metronome.svelte';
+	import { bpm } from '#stores/bpm.svelte.ts';
+	import { metronome } from '#stores/metronome.svelte.ts';
 
 	let duration = $derived(`${60000 / bpm.speed}ms`);
 	let reverse = $derived(metronome.beatCount % 2 === 0);

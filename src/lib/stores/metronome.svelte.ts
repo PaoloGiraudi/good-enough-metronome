@@ -1,5 +1,5 @@
 import { Loop, MembraneSynth, Synth, getDraw, getTransport, start } from 'tone';
-import { allowScreenSleep, keepScreenAwake } from '$lib/wake-lock';
+import { allowScreenSleep, keepScreenAwake } from '#lib/wake-lock.ts';
 import { beats } from './beats.svelte';
 import { bpm } from './bpm.svelte';
 import { mode } from './mode.svelte';
