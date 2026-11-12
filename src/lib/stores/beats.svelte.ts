@@ -1,19 +1,10 @@
+import { beatsSpecs, defaultSettings, type BeatPattern } from '$lib/settings';
 import { readSetting, writeSetting } from '$lib/storage';
 
-type BeatPattern = boolean[];
-
-const startingBeats: BeatPattern = [true, false, false, false];
-
-export const beatsSpecs = { min: 2, max: 9 };
-
-const isBeatPattern = (value: unknown): value is BeatPattern =>
-	Array.isArray(value) &&
-	value.length >= beatsSpecs.min &&
-	value.length <= beatsSpecs.max &&
-	value.every((beat) => typeof beat === 'boolean');
+export { beatsSpecs };
 
 class Beats {
-	values = $state(startingBeats);
+	values = $state<BeatPattern>([...defaultSettings.beats]);
 
 	increment = (amount = 1) => {
 		const added = Math.min(amount, beatsSpecs.max - this.values.length);
@@ -36,10 +27,8 @@ class Beats {
 		this.#persist();
 	};
 
-	hydrate = () => {
-		this.values = readSetting('beats', this.values, (value) =>
-			isBeatPattern(value) ? value : null
-		);
+	hydrate = (fallback: BeatPattern = defaultSettings.beats) => {
+		this.values = [...readSetting('beats', fallback)];
 	};
 
 	#persist = () => writeSetting('beats', this.values);

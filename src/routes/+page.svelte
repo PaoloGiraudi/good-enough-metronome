@@ -1,28 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import BeatsToggle from '$components/beats-toggle.svelte';
 	import ButtonControls from '$components/button-controls.svelte';
 	import ModeSwitch from '$components/mode-switch.svelte';
 	import Pendulum from '$components/pendulum.svelte';
 	import PlayButton from '$components/play-button.svelte';
 	import Slider from '$components/slider.svelte';
-	import { beats } from '$stores/beats.svelte';
 	import { bpm, bpmSpecs } from '$stores/bpm.svelte';
 	import { metronome } from '$stores/metronome.svelte';
-	import { mode } from '$stores/mode.svelte';
 	import { pendulum } from '$stores/pendulum.svelte';
-	import { sound } from '$stores/sound.svelte';
-
-	let ready = $state(false);
-
-	onMount(() => {
-		bpm.hydrate();
-		beats.hydrate();
-		mode.hydrate();
-		pendulum.hydrate();
-		sound.hydrate();
-		ready = true;
-	});
 
 	function handleKeydown(event: KeyboardEvent) {
 		const target = event.target as HTMLElement | null;
@@ -66,7 +51,7 @@
 <section class="zone">
 	<div class="beats-area">
 		<BeatsToggle />
-		{#if ready && pendulum.visible}
+		{#if pendulum.visible}
 			<Pendulum />
 		{/if}
 	</div>
@@ -82,9 +67,9 @@
 			decrement={bpm.decrement}
 			increment={bpm.increment}
 		>
-			<span class={['bpm-value', { ready }]}>{bpm.speed}</span>
+			<span class="bpm-value">{bpm.speed}</span>
 		</ButtonControls>
-		<div class={['slider', { ready }]}>
+		<div class="slider">
 			<Slider />
 		</div>
 		<button type="button" class="tap" aria-label="Tap tempo" onclick={bpm.tap}>Tap</button>
@@ -149,16 +134,6 @@
 		flex-direction: column;
 		gap: var(--size-8);
 		width: 100%;
-	}
-
-	.bpm-value,
-	.slider {
-		visibility: hidden;
-	}
-
-	.bpm-value.ready,
-	.slider.ready {
-		visibility: visible;
 	}
 
 	.slider {

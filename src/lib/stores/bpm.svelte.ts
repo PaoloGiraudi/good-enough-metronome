@@ -1,16 +1,14 @@
+import { clampBpm, defaultSettings } from '$lib/settings';
 import { readSetting, writeSetting } from '$lib/storage';
 
-const startingSpeed = 120;
+export { bpmSpecs } from '$lib/settings';
+
 const resetAfterMs = 3000;
 const persistAfterMs = 150;
 const maxTaps = 8;
 
-export const bpmSpecs = { min: 30, max: 300 };
-
-const clamp = (value: number) => Math.round(Math.min(Math.max(value, bpmSpecs.min), bpmSpecs.max));
-
 class Bpm {
-	speed = $state(startingSpeed);
+	speed = $state(defaultSettings.bpm);
 
 	#taps: number[] = [];
 	#saveTimer: ReturnType<typeof setTimeout> | null = null;
@@ -47,14 +45,12 @@ class Bpm {
 		this.#apply(60000 / averageInterval);
 	};
 
-	hydrate = () => {
-		this.speed = readSetting('bpm', this.speed, (value) =>
-			typeof value === 'number' && Number.isFinite(value) ? clamp(value) : null
-		);
+	hydrate = (fallback: number = defaultSettings.bpm) => {
+		this.speed = readSetting('bpm', clampBpm(fallback));
 	};
 
 	#apply = (value: number) => {
-		this.speed = clamp(value);
+		this.speed = clampBpm(value);
 		this.#persist();
 	};
 

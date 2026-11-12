@@ -1,18 +1,11 @@
+import { defaultSettings, modeLabels, modes, type Mode } from '$lib/settings';
 import { readSetting, writeSetting } from '$lib/storage';
 
-export const modes = ['sound', 'mute', 'flash'] as const;
-export type Mode = (typeof modes)[number];
-
-export const modeLabels: Record<Mode, string> = {
-	sound: 'Sound',
-	mute: 'No sound',
-	flash: 'Flash'
-};
-
-const isMode = (value: unknown): value is Mode => modes.includes(value as Mode);
+export { modeLabels, modes };
+export type { Mode };
 
 class ModeSetting {
-	value = $state<Mode>('sound');
+	value = $state<Mode>(defaultSettings.mode);
 
 	set = (value: Mode) => {
 		this.value = value;
@@ -24,19 +17,8 @@ class ModeSetting {
 		this.set(modes[(index + 1) % modes.length]);
 	};
 
-	hydrate = () => {
-		const stored = readSetting<Mode | null>('mode', null, (value) =>
-			isMode(value) ? value : null
-		);
-		if (stored !== null) {
-			this.value = stored;
-			return;
-		}
-
-		const legacyFlash = readSetting('flash', false, (value) =>
-			typeof value === 'boolean' ? value : null
-		);
-		this.value = legacyFlash ? 'flash' : 'sound';
+	hydrate = (fallback: Mode = defaultSettings.mode) => {
+		this.value = readSetting('mode', fallback);
 	};
 }
 

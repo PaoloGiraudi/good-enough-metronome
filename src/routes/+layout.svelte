@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import 'open-props/style';
 	import 'open-props/normalize';
 	import 'open-props/colors-hsl';
@@ -7,9 +7,25 @@
 	import Shortcuts from '$components/shortcuts.svelte';
 	import SoundSwitch from '$components/sound-switch.svelte';
 	import ThemeSwitch from '$components/theme-switch.svelte';
+	import { beats } from '$stores/beats.svelte';
+	import { bpm } from '$stores/bpm.svelte';
 	import { metronome } from '$stores/metronome.svelte';
+	import { mode } from '$stores/mode.svelte';
+	import { pendulum } from '$stores/pendulum.svelte';
+	import { sound } from '$stores/sound.svelte';
+	import type { Snippet } from 'svelte';
+	import { untrack } from 'svelte';
+	import type { LayoutData } from './$types';
 
-	let { children } = $props();
+	let { data, children }: { data: LayoutData; children: Snippet } = $props();
+
+	untrack(() => {
+		bpm.hydrate(data.settings.bpm);
+		beats.hydrate(data.settings.beats);
+		mode.hydrate(data.settings.mode);
+		pendulum.hydrate(data.settings.pendulum);
+		sound.hydrate(data.settings.sound);
+	});
 </script>
 
 <main>

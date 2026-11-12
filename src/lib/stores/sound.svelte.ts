@@ -1,18 +1,11 @@
+import { defaultSettings, soundLabels, soundTypes, type SoundType } from '$lib/settings';
 import { readSetting, writeSetting } from '$lib/storage';
 
-export const soundTypes = ['click', 'wood', 'beep'] as const;
-export type SoundType = (typeof soundTypes)[number];
-
-export const soundLabels: Record<SoundType, string> = {
-	click: 'Click',
-	wood: 'Wood',
-	beep: 'Beep'
-};
-
-const isSoundType = (value: unknown): value is SoundType => soundTypes.includes(value as SoundType);
+export { soundLabels, soundTypes };
+export type { SoundType };
 
 class SoundSetting {
-	value = $state<SoundType>('click');
+	value = $state<SoundType>(defaultSettings.sound);
 
 	set = (value: SoundType) => {
 		this.value = value;
@@ -24,8 +17,8 @@ class SoundSetting {
 		this.set(soundTypes[(index + 1) % soundTypes.length]);
 	};
 
-	hydrate = () => {
-		this.value = readSetting('sound', this.value, (value) => (isSoundType(value) ? value : null));
+	hydrate = (fallback: SoundType = defaultSettings.sound) => {
+		this.value = readSetting('sound', fallback);
 	};
 }
 
