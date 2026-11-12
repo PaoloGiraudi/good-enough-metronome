@@ -11,3 +11,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vscode
 .wrangler
+
+# Locally installed agent skills
+.agents/
+skills-lock.json

@@ -26,7 +26,7 @@
 		align-items: center;
 	}
 	button {
-		background-color: var(--surface-2);
+		background-color: transparent;
 		height: var(--size-8);
 	}
 

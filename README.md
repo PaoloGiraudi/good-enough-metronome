@@ -10,9 +10,15 @@ GEM is a simple, yet powerful, metronome PWA built with Sveltekit, Tone.js, and 
 - Works offline
 - Light and dark themes
 - Accessible
-- Adjustable tempo (30 BPM - 300 BPM)
+- Adjustable tempo (30 BPM - 300 BPM), with tap tempo
 - Adjustable number of beats (2 - 9)
 - Customizable beat accents
+- Pendulum indicator for the position between beats
+- Three metronome sounds: click, wood, and beep
+- Sound, silent, and flash modes
+- Keyboard shortcuts (space, arrows, T)
+- Remembers your settings
+- Keeps the screen awake while playing
 
 ## Try it out
 
