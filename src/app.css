@@ -1,86 +1,86 @@
 html {
-	color-scheme: light dark;
+  color-scheme: light dark;
 
-	--brand: light-dark(var(--teal-10), var(--teal-4));
-	--text-1: light-dark(var(--gray-11), var(--gray-1));
-	--surface-1: light-dark(var(--stone-2), var(--gray-12));
-	--surface-2: light-dark(var(--stone-3), var(--gray-8));
-	--link: light-dark(var(--teal-10), var(--teal-3));
+  --brand: light-dark(var(--teal-10), var(--teal-4));
+  --text-1: light-dark(var(--gray-11), var(--gray-1));
+  --surface-1: light-dark(var(--stone-2), var(--gray-12));
+  --surface-2: light-dark(var(--stone-3), var(--gray-8));
+  --link: light-dark(var(--teal-10), var(--teal-3));
 
-	--surface-shadow: var(--gray-8-hsl);
+  --surface-shadow: var(--gray-8-hsl);
 
-	--shadow-strength-dark: 80%;
-	--shadow-strength-light: 2%;
+  --shadow-strength-dark: 80%;
+  --shadow-strength-light: 2%;
 
-	--hairline: 0.5px;
-	--tap-size: 2.75rem;
+  --hairline: 1px;
+  --tap-size: 2.75rem;
 }
 
 @media (min-width: 50rem) {
-	:root {
-		--tap-size: 3rem;
-	}
+  :root {
+    --tap-size: 3rem;
+  }
 }
 
 :root {
-	--shadow-strength: var(--shadow-strength-dark);
+  --shadow-strength: var(--shadow-strength-dark);
 }
 
 @media (prefers-color-scheme: light) {
-	:root {
-		--shadow-strength: var(--shadow-strength-light);
-	}
+  :root {
+    --shadow-strength: var(--shadow-strength-light);
+  }
 }
 
-[color-scheme='dark'] {
-	color-scheme: dark;
-	--shadow-strength: var(--shadow-strength-dark);
+[color-scheme="dark"] {
+  color-scheme: dark;
+  --shadow-strength: var(--shadow-strength-dark);
 }
 
-[color-scheme='light'] {
-	color-scheme: light;
-	--shadow-strength: var(--shadow-strength-light);
+[color-scheme="light"] {
+  color-scheme: light;
+  --shadow-strength: var(--shadow-strength-light);
 }
 
 body,
 html {
-	height: 100svh;
-	font-family: var(--font-sans);
+  height: 100svh;
+  font-family: var(--font-sans);
 }
 
 body {
-	user-select: none;
-	-webkit-user-select: none;
-	-webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
-	color: var(--text-1);
-	accent-color: var(--brand);
-	background-color: var(--surface-2);
-	touch-action: manipulation;
+  color: var(--text-1);
+  accent-color: var(--brand);
+  background-color: var(--surface-2);
+  touch-action: manipulation;
 }
 
 button {
-	padding: 0;
-	display: grid;
-	place-items: center;
-	background-color: transparent;
-	color: var(--text-1);
-	aspect-ratio: var(--ratio-square);
-	min-inline-size: var(--tap-size);
-	min-block-size: var(--tap-size);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background-color: transparent;
+  color: var(--text-1);
+  aspect-ratio: var(--ratio-square);
+  min-inline-size: var(--tap-size);
+  min-block-size: var(--tap-size);
 
-	&:disabled {
-		opacity: 0.3;
-	}
+  &:disabled {
+    opacity: 0.3;
+  }
 }
 
 :focus-visible {
-	outline: var(--border-size-2) solid var(--brand);
-	outline-offset: var(--border-size-2);
+  outline: var(--border-size-2) solid var(--brand);
+  outline-offset: var(--border-size-2);
 }
 
 .metronome > section:not(:first-of-type):not(:last-of-type) {
-	border-bottom: var(--hairline) solid var(--surface-2);
+  border-bottom: var(--hairline) solid var(--surface-2);
 }
