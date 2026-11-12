@@ -14,10 +14,6 @@ html {
 
 	--hairline: 0.5px;
 	--tap-size: 2.75rem;
-	--disabled-opacity: 0.3;
-	--flash-duration: 70ms;
-	--flash-normal: 14%;
-	--flash-accent: 30%;
 }
 
 @media (min-width: 50rem) {
@@ -76,7 +72,7 @@ button {
 	min-block-size: var(--tap-size);
 
 	&:disabled {
-		opacity: var(--disabled-opacity);
+		opacity: 0.3;
 	}
 }
 

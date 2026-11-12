@@ -98,9 +98,7 @@
 	}
 
 	div[data-type='bpm'] {
-		--bpm-size: 6rem;
-
-		font-size: var(--bpm-size);
+		font-size: 6rem;
 		line-height: 1;
 		font-variant-numeric: tabular-nums;
 	}
@@ -111,7 +109,7 @@
 
 	@media (max-height: 44rem) {
 		div[data-type='bpm'] {
-			--bpm-size: var(--size-10);
+			font-size: var(--size-10);
 		}
 	}
 </style>

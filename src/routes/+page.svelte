@@ -5,7 +5,6 @@
 	import ModeSwitch from '$components/mode-switch.svelte';
 	import Pendulum from '$components/pendulum.svelte';
 	import PlayButton from '$components/play-button.svelte';
-	import Section from '$components/section.svelte';
 	import Slider from '$components/slider.svelte';
 	import { beats } from '$stores/beats.svelte';
 	import { bpm, bpmSpecs } from '$stores/bpm.svelte';
@@ -64,16 +63,16 @@
 
 <h1 class="visually-hidden">Good Enough Metronome - a free online metronome</h1>
 
-<Section>
+<section class="zone">
 	<div class="beats-area">
 		<BeatsToggle />
 		{#if ready && pendulum.visible}
 			<Pendulum />
 		{/if}
 	</div>
-</Section>
+</section>
 
-<Section flex="1 1 auto">
+<section class="zone tempo-zone">
 	<div class="tempo">
 		<ButtonControls
 			type="bpm"
@@ -90,14 +89,14 @@
 		</div>
 		<button type="button" class="tap" aria-label="Tap tempo" onclick={bpm.tap}>Tap</button>
 	</div>
-</Section>
+</section>
 
-<Section>
+<section class="zone">
 	<div class="transport">
 		<PlayButton />
 		<ModeSwitch />
 	</div>
-</Section>
+</section>
 
 <style>
 	.visually-hidden {
@@ -112,9 +111,32 @@
 		white-space: nowrap;
 	}
 
-	.tempo {
-		--tap-width: 5.5rem;
+	.zone {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0 0 auto;
+		padding: var(--size-4) 0;
+		min-block-size: 0;
+	}
 
+	.tempo-zone {
+		flex: 1 1 auto;
+	}
+
+	@media (min-width: 50rem) {
+		.zone {
+			padding: var(--size-5) 0;
+		}
+	}
+
+	@media (max-height: 44rem) {
+		.zone {
+			padding: var(--size-3) 0;
+		}
+	}
+
+	.tempo {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -146,7 +168,7 @@
 	.tap {
 		aspect-ratio: auto;
 		height: auto;
-		min-inline-size: var(--tap-width);
+		min-inline-size: 5.5rem;
 		min-block-size: var(--size-8);
 		padding: var(--size-1) var(--size-4);
 		border: var(--border-size-1) solid var(--surface-2);

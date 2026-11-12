@@ -55,15 +55,15 @@
 		padding: var(--size-4);
 		padding-bottom: 0;
 		scroll-snap-align: start;
-		transition: background-color var(--flash-duration) ease-out;
+		transition: background-color 70ms ease-out;
 	}
 
 	.metronome[data-flash='1'] {
-		background-color: color-mix(in srgb, var(--brand) var(--flash-normal), var(--surface-1));
+		background-color: color-mix(in srgb, var(--brand) 14%, var(--surface-1));
 	}
 
 	.metronome[data-flash='2'] {
-		background-color: color-mix(in srgb, var(--brand) var(--flash-accent), var(--surface-1));
+		background-color: color-mix(in srgb, var(--brand) 30%, var(--surface-1));
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -104,15 +104,10 @@
 		}
 
 		.metronome {
-			--card-max-height: 95vh;
-			--card-max-width: 95vw;
-			--card-max-inline: var(--size-15);
-			--card-ratio: 9 / 16;
-
-			height: min(var(--card-max-height), calc(var(--card-max-inline) * 16 / 9));
+			height: min(95vh, calc(var(--size-15) * 16 / 9));
 			width: auto;
-			aspect-ratio: var(--card-ratio);
-			max-inline-size: var(--card-max-width);
+			aspect-ratio: 9 / 16;
+			max-inline-size: 95vw;
 			overflow-y: auto;
 			padding: var(--size-5);
 			padding-bottom: 0;

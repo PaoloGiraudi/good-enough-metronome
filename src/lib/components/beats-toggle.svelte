@@ -49,9 +49,6 @@
 	}
 
 	.pads {
-		--beat-height: 3.5rem;
-		--hover-brightness: 1.1;
-
 		display: flex;
 		flex: 1 1 auto;
 		justify-content: center;
@@ -62,15 +59,15 @@
 	.pads button {
 		flex: 1 1 0;
 		min-inline-size: 0;
-		height: var(--beat-height);
+		height: 3.5rem;
 		aspect-ratio: auto;
 		border: var(--border-size-2) solid var(--brand);
 		background-color: transparent;
 	}
 
 	@media (min-width: 50rem) {
-		.pads {
-			--beat-height: var(--size-9);
+		.pads button {
+			height: var(--size-9);
 		}
 	}
 
@@ -92,7 +89,7 @@
 		}
 		.pads button.checked:hover {
 			background-color: var(--brand);
-			filter: brightness(var(--hover-brightness));
+			filter: brightness(1.1);
 		}
 	}
 </style>
