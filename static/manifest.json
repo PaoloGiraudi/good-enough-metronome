@@ -9,7 +9,7 @@
 	"display": "standalone",
 	"orientation": "portrait",
 	"background_color": "#066649",
-	"theme_color": "#066649",
+	"theme_color": "#000000",
 	"dir": "ltr",
 	"lang": "en",
 	"categories": ["music", "utilities"],
