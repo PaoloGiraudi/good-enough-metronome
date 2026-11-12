@@ -18,7 +18,7 @@ sw.addEventListener('install', (event) => {
 	}
 
 	event.waitUntil(addFilesToCache());
-	sw.skipWaiting();
+	void sw.skipWaiting();
 });
 
 sw.addEventListener('activate', (event) => {
@@ -46,7 +46,7 @@ sw.addEventListener('fetch', (event) => {
 			const response = await fetch(event.request);
 
 			if (response.status === 200) {
-				cache.put(event.request, response.clone());
+				void cache.put(event.request, response.clone());
 			}
 
 			return response;
